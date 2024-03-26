@@ -33,7 +33,37 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-};
 
-/* TODO: Create an updateUser route */
-/* TODO: Create a deleteUser route */
+  /* TODO: Create an updateUser route */
+  async getUserToUpdate(req, res) {
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        req.body,
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'No user found with that ID' });
+      }
+      res.json({ message: 'User updated successfully' });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  /* TODO: Create a deleteUser route */
+  async deleteUser(req, res) {
+    try {
+      const deletedUser = await User.findOneAndDelete({
+        _id: req.params.userId,
+      });
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'No user found with that ID' });
+      }
+      res.json({ message: 'User deleted successfully' });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+};
