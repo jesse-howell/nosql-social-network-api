@@ -35,7 +35,7 @@ module.exports = {
   },
 
   /* TODO: Create an updateUser route */
-  async getUserToUpdate(req, res) {
+  async updateUser(req, res) {
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: req.params.userId },
