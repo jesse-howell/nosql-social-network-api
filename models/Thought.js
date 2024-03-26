@@ -21,7 +21,6 @@ const thoughtSchema = new Schema(
     reactions: {
       // TODO: array of reactionSchema documents
     },
-    responses: [Response],
   },
   {
     toJSON: {
@@ -40,7 +39,36 @@ thoughtSchema
   });
 
 // TODO: create reactionSchema
-// Initialize our Video model
+
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new mongoose.Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxlength: 280,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      // TODO: create getter to format timestamp on query
+    },
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
+// Initialize Thought model
 const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
