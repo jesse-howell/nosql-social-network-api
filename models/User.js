@@ -1,11 +1,18 @@
 const { Schema, model } = require('mongoose');
-const { Thought } = require('../models/Thought');
 
 // Schema to create User model
 const userSchema = new Schema(
   {
     name: { type: String, unique: true, required: true, trim: true },
-    email: { type: String, required: true, unique: true, match: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        'Please add a valid email.',
+      ],
+    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,
