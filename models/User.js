@@ -5,14 +5,8 @@ const userSchema = new Schema(
   {
     name: { type: String, unique: true, required: true, trim: true },
     email: { type: String, required: true, unique: true, match: true },
-    // TODO: add thought model array
-    thoughts: [
-      /* array of _id values referencing the Thought model*/
-    ],
-    // TODO: add user model array
-    friends: [
-      /* array of _id values referencing the User model (self-reference) */
-    ],
+    thoughts: [{ Thought }],
+    friends: [{ User }],
   },
   {
     toJSON: {
