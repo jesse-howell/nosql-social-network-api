@@ -104,7 +104,7 @@ module.exports = {
       }
 
       res.json({
-        message: 'Thought reaction successfully added',
+        message: 'Thought reaction successfully added!',
         addedThoughtReaction,
       });
     } catch (err) {
@@ -124,7 +124,10 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
-      res.json(removedThoughtReaction);
+      res.json({
+        message: 'Thought reaction successfully removed!',
+        removedThoughtReaction,
+      });
     } catch (err) {
       res.status(500).json(err);
     }
