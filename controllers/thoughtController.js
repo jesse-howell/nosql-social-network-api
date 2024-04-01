@@ -15,7 +15,7 @@ module.exports = {
       const thought = await Thought.findOne({ _id: req.params.thoughtId });
 
       if (!thought) {
-        return res.status(404).json({ message: 'No thought with that ID' });
+        return res.status(404).json({ message: 'No thought with that ID!' });
       }
 
       res.json(thought);
@@ -35,7 +35,7 @@ module.exports = {
 
       if (!user) {
         return res.status(404).json({
-          message: 'Thought created, but found no user with that ID',
+          message: 'Thought created, but found no user with that ID!',
         });
       }
 
@@ -47,17 +47,17 @@ module.exports = {
   },
   async updateThought(req, res) {
     try {
-      const thought = await Thought.findOneAndUpdate(
+      const updatedThought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $set: req.body },
         { runValidators: true, new: true }
       );
 
-      if (!thought) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+      if (!updatedThought) {
+        return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
-      res.json(thought);
+      res.json({ message: 'Thought successfully updated!', updatedThought });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -65,12 +65,12 @@ module.exports = {
   },
   async deleteThought(req, res) {
     try {
-      const thought = await Thought.findOneAndRemove({
+      const deletedThought = await Thought.findOneAndRemove({
         _id: req.params.thoughtId,
       });
 
-      if (!thought) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+      if (!deletedThought) {
+        return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
       const user = await User.findOneAndUpdate(
@@ -100,7 +100,7 @@ module.exports = {
       );
 
       if (!addedThoughtReaction) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+        return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
       res.json({
@@ -120,11 +120,11 @@ module.exports = {
         { runValidators: true, new: true }
       );
 
-      if (!removedtThoughtReaction) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+      if (!removedThoughtReaction) {
+        return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
-      res.json(removedtThoughtReaction);
+      res.json(removedThoughtReaction);
     } catch (err) {
       res.status(500).json(err);
     }
