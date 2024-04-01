@@ -74,9 +74,9 @@ module.exports = {
         { new: true }
       );
       if (!addedFriend) {
-        return res.status(404).json({ message: 'No user found with that ID' });
+        return res.status(404).json({ message: 'No user found with that ID!' });
       }
-      res.json({ message: 'Friend successfully added', addedFriend });
+      res.json({ message: 'Friend successfully added!', addedFriend });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -91,9 +91,9 @@ module.exports = {
         { new: true }
       );
       if (!removedFriend) {
-        return res.status(404).json({ message: 'No user found with that ID' });
+        return res.status(404).json({ message: 'No user found with that ID!' });
       }
-      res.json({ message: 'Friend successfully removed', removedFriend });
+      res.json({ message: 'Friend successfully removed!', removedFriend });
     } catch (err) {
       res.status(500).json(err);
     }
