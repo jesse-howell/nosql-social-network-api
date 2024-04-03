@@ -1,5 +1,6 @@
 const User = require('../models/User');
 
+// get all users
 module.exports = {
   async getUsers(req, res) {
     try {
@@ -9,6 +10,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  // get a single user
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId }).select(
@@ -33,7 +35,7 @@ module.exports = {
     }
   },
 
-  /* TODO: Create an updateUser route */
+  // update a user
   async updateUser(req, res) {
     try {
       const updatedUser = await User.findOneAndUpdate(
@@ -50,7 +52,7 @@ module.exports = {
     }
   },
 
-  /* TODO: Create a deleteUser route */
+  // delete a user
   async deleteUser(req, res) {
     try {
       const deletedUser = await User.findOneAndDelete({
@@ -64,8 +66,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-
-  // TODO: Add friend to user
+  // add friend to user
   async addFriend(req, res) {
     try {
       const addedFriend = await User.findOneAndUpdate(
@@ -81,8 +82,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-
-  // TODO: Remove friend from user
+  // remove friend from user
   async removeFriend(req, res) {
     try {
       const removedFriend = await User.findOneAndUpdate(

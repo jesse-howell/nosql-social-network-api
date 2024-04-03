@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create User model
+// schema to create user model
 const userSchema = new Schema(
   {
     name: { type: String, unique: true, required: true, trim: true },
@@ -33,16 +33,14 @@ const userSchema = new Schema(
     id: false,
   }
 );
-
-// Virtual schema for friendCount
+// virtual schema for friendCount
 userSchema
   .virtual('friendCount')
-  // Getter
+  // getter
   .get(function () {
     return this.friends.length;
   });
-
-// Initialize our User model
+// initialize our User model
 const User = model('user', userSchema);
 
 module.exports = User;
