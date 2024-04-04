@@ -20,9 +20,9 @@ This project uses NoSQL as a backend for a prospective social networking applica
 
 ## Usage
 
-https://www.youtube.com/watch?v=uoKNAVkmuB4
+[![demo video](/images/social%20network%20api%20demo.png)](https://www.youtube.com/watch?v=uoKNAVkmuB4 'social network api demo')
 
-Click demo video above. ⬆️
+Click image above for demo video. ⬆️
 
 ## Contact for Questions
 
