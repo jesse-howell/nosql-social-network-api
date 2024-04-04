@@ -28,10 +28,10 @@ module.exports = {
   // create a new thought
   async createThought(req, res) {
     try {
-      const thought = await Thought.create(req.body);
+      const createdThought = await Thought.create(req.body);
       const user = await User.findOneAndUpdate(
         { _id: req.body.userId },
-        { $addToSet: { thoughts: thought._id } },
+        { $addToSet: { thoughts: req.body.thoughtid } },
         { new: true }
       );
 
@@ -41,7 +41,7 @@ module.exports = {
         });
       }
 
-      res.json('Created the thought! 🎉');
+      res.json({ message: 'Created the thought! 🎉', createdThought });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -77,19 +77,19 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
-      const user = await User.findOneAndUpdate(
-        { thoughts: req.params.thoughtId },
-        { $pull: { thoughts: req.params.thoughtId } },
-        { new: true }
-      );
+      // const thought = await Thought.findOneAndUpdate(
+      //   { thoughts: req.params.thoughtId },
+      //   { $pull: { thoughts: req.params.thoughtId } },
+      //   { new: true }
+      // );
 
-      if (!user) {
-        return res
-          .status(404)
-          .json({ message: 'Thought created but no user with this id!' });
-      }
+      // if (!thought) {
+      //   return res
+      //     .status(404)
+      //     .json({ message: 'No thought found with that ID!' });
+      // }
 
-      res.json({ message: 'Thought successfully deleted!' });
+      res.json({ message: 'Thought successfully deleted!', deletedThought });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -108,7 +108,7 @@ module.exports = {
       }
 
       res.json({
-        message: 'Thought reaction successfully added!',
+        message: 'Reaction successfully added!',
         addedThoughtReaction,
       });
     } catch (err) {
@@ -118,19 +118,19 @@ module.exports = {
   // remove thought reaction
   async removeThoughtReaction(req, res) {
     try {
-      const removedThoughtReaction = await Thought.findOneAndUpdate(
+      const updatedThought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $pull: { reactions: { reactionId: req.params.reactionId } } },
-        { runValidators: true, new: true }
+        { new: true }
       );
 
-      if (!removedThoughtReaction) {
+      if (!updatedThought) {
         return res.status(404).json({ message: 'No thought with this ID!' });
       }
 
       res.json({
-        message: 'Thought reaction successfully removed!',
-        removedThoughtReaction,
+        message: 'Reaction successfully removed!',
+        updatedThought,
       });
     } catch (err) {
       res.status(500).json(err);

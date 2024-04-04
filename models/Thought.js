@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-// schema to create a thougth reaction
+// schema to create a thought reaction
 const reactionSchema = new Schema(
   {
     reactionId: {
