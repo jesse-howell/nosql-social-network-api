@@ -20,7 +20,9 @@ This project uses NoSQL as a backend for a prospective social networking applica
 
 ## Usage
 
-Via an API viewer application like Thunder Client or HTTPie.
+https://www.youtube.com/watch?v=uoKNAVkmuB4
+
+Click demo video above. ⬆️
 
 ## Contact for Questions
 
