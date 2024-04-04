@@ -1,23 +1,26 @@
-# note-taker
+# nosql-social-network-api
 
 ## Description
 
-This project is a node.js webapp built to make notes. Its clean interface and simple functionality make it instantly appealing to users of all levels. It was built to solve the problem of complexity with note taking applications. The learning curve on a lot of modern note takers can be high so I created simple alternative.
+This project uses NoSQL as a backend for a prospective social networking application. The design is simple and meant as reference for future development. Building the helped me understand what goes into structuring a database for the user, follower, post and comment management.
 
 ## Installation
 
-You open the app via this [link](https://git.heroku.com/frozen-chamber-97474.git).
+1. Clone the code to your local machine.
+2. Install the required dependencies listed in the package.json.
+3. Run `npm run dev`.
+4. Add the routes to Thunder Client or HTTPie in order to view requests and responses.
 
 ## Table of Contents
 
-- [Description](#description)
+- [Description](#descritpion)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contact](#contact)
 
 ## Usage
 
-Unfortunately, the app is not fully functional at this time.
+Via an API viewer application like Thunder Client or HTTPie.
 
 ## Contact for Questions
 
